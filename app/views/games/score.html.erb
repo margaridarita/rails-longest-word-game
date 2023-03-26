@@ -2,12 +2,14 @@
 
 <% if @included %>
   <% if @english_word %>
-    <p><strong>Congratulations!</strong> <%= @word %> is a valid English word!</p>
+    <p>Congratulations! <strong><%= @word %></strong> is a valid English word! 😁</p>
   <% else %>
-    <p>Sorry but <strong><%= @word %></strong> does not seem to be a valid English word...</p>
+    <p>Sorry but <strong><%= @word %></strong> does not seem to be a valid English word... 😖</p>
   <% end %>
 <% else %>
-  <p>Sorry but <strong><%= @word %></strong> can't be built out of <%= @letters.join(", ") %></p>
+  <p>Sorry but <strong><%= @word %></strong> can't be built out of <%= @letters.join(", ") %> 🙁</p>
 <% end %>
 
-<%= link_to "Play again", new_path %>
+<button class="ml-10">
+  <%= link_to "Play again", root_path %>
+</button>

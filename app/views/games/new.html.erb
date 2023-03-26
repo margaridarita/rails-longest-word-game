@@ -1,16 +1,22 @@
-<div>New Game</div>
+<h1>New Game</h1>
 
 <ul>
   <%@letters.each do |letter|%>
-    <li><%=letter%></li>
+    <li class="letter"><%=letter%></li>
   <%end%>
 </ul>
 
 <p class="form-prefix">What is the longest word you can find?</p>
 
-<form action="/score" method="post" data-turbo="false">
+<form action="/score" method="post" data-turbo="false" class="form">
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <%= hidden_field_tag :letters, @letters %>
   <input class="form-control" type="text" placeholder="Your guess" name="word">
-  <button type="submit" class="btn btn-primary mb-3">Submit</button>
+  <button type="submit">Submit</button>
 </form>
+
+<% if flash[:error] %>
+  <div class="ml-10 warning">
+    <%= flash[:error] %>
+  </div>
+<% end %>

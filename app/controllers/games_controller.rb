@@ -12,7 +12,11 @@ class GamesController < ApplicationController
 
   def score
     @letters = params[:letters].split
-    @word = (params[:word] || '').upcase
+    @word = (params[:word] || '').upcase.gsub(/\s+/, '')
+    if @word.blank?
+      flash[:error] = 'You must enter a word'
+      render :new and return # the rest of the method won't be read
+    end
     @included = included?(@word, @letters)
     @english_word = english_word?(@word)
   end
